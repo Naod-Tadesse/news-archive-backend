@@ -6,18 +6,7 @@ const { NewsScreenshot } = require("../models/news-screenshot");
 const fs = require("fs/promises");
 
 exports.run = async () => {
-  const browser = await puppeteer.launch({
-    args: [
-      "--disable-setuid-sandbox",
-      "--no-sandbox",
-      "--single-process",
-      "--no-zygote",
-    ],
-    executablePath:
-      process.env.NODE_ENV === "production"
-        ? process.env.PUPPETEER_EXECUTABLE_PATH
-        : puppeteer.executablePath(),
-  });
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto("https://www.bbc.com/news", { timeout: 60000 }); // Set timeout to 60 seconds
 
@@ -70,8 +59,8 @@ exports.run = async () => {
     });
     await newScreenshot.save();
     await fs.unlink(filePath);
-    console.log(`Deleted local file: ${filePath}`);
   } catch (error) {
+    console.log(`Deleted local file: ${filePath}`);
     console.error(error);
   }
   await browser.close();
