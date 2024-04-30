@@ -58,7 +58,7 @@ exports.run = async () => {
       dateOfScreenshot: dateOfShot,
     });
     await newScreenshot.save();
-    console.log("saved or no", newScreenshot);
+
     await fs.unlink(filePath);
   } catch (error) {
     console.log(`Deleted local file: ${filePath}`);
