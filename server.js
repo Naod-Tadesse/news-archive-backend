@@ -8,8 +8,9 @@ const connectToDatabase = require("./config/database");
 dotenv.config({ path: "./config/config.env" });
 
 connectToDatabase();
+port = process.env.PORT || 3000;
 
-server.listen(process.env.PORT, () => {
+server.listen(port, () => {
   console.log(
     `Listening on port ${process.env.PORT} in ${process.env.NODE_ENV} mode`
   );
