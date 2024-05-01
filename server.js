@@ -15,7 +15,7 @@ server.listen(port, () => {
     `Listening on port ${process.env.PORT} in ${process.env.NODE_ENV} mode`
   );
 
-  // Schedule the run function to be called every 6 hours
+  // Schedule the run function to be called every 6 hour
   schedule.scheduleJob("0 */3 * * *", async () => {
     try {
       await run();
